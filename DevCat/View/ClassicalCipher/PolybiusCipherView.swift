@@ -1,26 +1,28 @@
 //
-//  URLEncodingView.swift
+//  PolybiusCipherView.swift
 //  DevCat
 //
-//  Created by ElysiaMae on 2024/7/7.
+//  Created by ElysiaMae on 2024/8/26.
 //
 
 import Sisyphus
 import SwiftUI
 
-struct URLEncodingView: View {
+struct PolybiusCipherView: View {
     @State private var inputText = ""
     @State private var outputText = ""
 
     var body: some View {
         VStack {
-            TitleText("URL Encoding")
+            TitleText("Polybius Cipher")
             HStack {
                 Button("Encode") {
-                    outputText = urlEncode(inputText) ?? "nil"
+                    let cipher = PolybiusCipher()
+                    outputText = cipher.encrypt(inputText)
                 }
                 Button("Decode") {
-                    outputText = urlDecode(inputText) ?? "nil"
+                    let cipher = PolybiusCipher()
+                    outputText = cipher.decrypt(inputText) ?? ""
                 }
             }
             Spacer()
@@ -51,5 +53,5 @@ struct URLEncodingView: View {
 }
 
 #Preview {
-    URLEncodingView()
+    PolybiusCipherView()
 }

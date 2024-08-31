@@ -11,18 +11,23 @@ struct ContentView: View {
     @State private var selectedCategory: CategoryType? = .encoding
     @State private var selectedProduct: Product?
 
+//    @StateObject private var settings = AppSettings()
+
     var body: some View {
         NavigationSplitView {
             List(CategoryType.allCases) { category in
+//                HStack(spacing: 40) {
                 Label(category.localizedName, systemImage: category.icon)
+                    .padding(.bottom, 12)
                     .onTapGesture {
                         selectedCategory = category
                         selectedProduct = nil
                     }
+//                }
             }
         } content: {
             VStack(alignment: .leading) {
-                if let selectedCategory = selectedCategory {
+                if let selectedCategory {
                     ForEach(selectedCategory.products) { product in
                         Text(product.name)
                             .padding(.vertical, 4) // 增加垂直边距
@@ -47,6 +52,7 @@ struct ContentView: View {
                 Text("Select a product")
             }
         }
+//        .environment(settings) // 注入 AppSettings 配置
     }
 }
 

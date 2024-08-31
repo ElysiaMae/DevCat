@@ -22,6 +22,7 @@ enum CategoryType: String, CaseIterable, Identifiable {
     case classicalCipher
     case text
     case image
+    case finance
     case other
 
     var id: String { rawValue }
@@ -35,6 +36,7 @@ enum CategoryType: String, CaseIterable, Identifiable {
         case .classicalCipher: return "ClassicalCipher"
         case .text: return "Text"
         case .image: return "Image"
+        case .finance: return "Finance"
         case .other: return "Other"
         }
     }
@@ -48,6 +50,7 @@ enum CategoryType: String, CaseIterable, Identifiable {
         case .classicalCipher: return "key.fill"
         case .text: return "textformat"
         case .image: return "photo"
+        case .finance: return "dollarsign.circle"
         case .other: return "ellipsis"
         }
     }
@@ -60,9 +63,10 @@ enum CategoryType: String, CaseIterable, Identifiable {
                 Product(name: "FileHash", detailView: AnyView(FileHashView())),
                 Product(name: "Hash", detailView: AnyView(HashView())),
                 Product(name: "HTML", detailView: AnyView(HTMLEncodingView())),
-                Product(name: "Morse", detailView: AnyView(MorseView())),
+                Product(name: "Morse", detailView: AnyView(MorseEncodingView())),
                 Product(name: "String", detailView: AnyView(StringEncodingView())),
-                Product(name: "URL", detailView: AnyView(URLEncodingView()))
+                Product(name: "URL", detailView: AnyView(URLEncodingView())),
+                Product(name: "JWT", detailView: AnyView(JWTEncodingView()))
             ]
         case .generate:
             [
@@ -81,7 +85,8 @@ enum CategoryType: String, CaseIterable, Identifiable {
         case .classicalCipher:
             [
                 Product(name: "CaesarCipher", detailView: AnyView(CaesarCipherView())),
-                Product(name: "ChinaCore", detailView: AnyView(ChinaCoreView()))
+                Product(name: "ChinaCore", detailView: AnyView(ChinaCoreView())),
+                Product(name: "PolybiusCipher", detailView: AnyView(PolybiusCipherView()))
             ]
         case .text:
             [
@@ -89,11 +94,18 @@ enum CategoryType: String, CaseIterable, Identifiable {
             ]
         case .image:
             [
-                Product(name: "DropImage", detailView: AnyView(DropImageView()))
+                Product(name: "DropImage", detailView: AnyView(DropImageView())),
+                Product(name: "QRCode", detailView: AnyView(QRCodeView()))
+            ]
+        case .finance:
+            [
+                Product(name: "Interest", detailView: AnyView(InterestView()))
             ]
         case .other:
             [
-                Product(name: "Scan", detailView: AnyView(ScanView()))
+                Product(name: "Scan", detailView: AnyView(ScanView())),
+                Product(name: "Spider", detailView: AnyView(SpiderView())),
+                Product(name: "Exif", detailView: AnyView(ExifView()))
             ]
         }
     }

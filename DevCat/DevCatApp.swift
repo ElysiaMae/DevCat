@@ -13,5 +13,19 @@ struct DevCatApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowStyle(.automatic)
+        .windowToolbarStyle(.automatic)
+        .commands {}
+
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }
+        #endif
+
+//        CommandGroup(replacing: .appSettings) {
+//            Button("menu.settings") {}
+//                .keyboardShortcut(",", modifiers: .command)
+//        }
     }
 }
