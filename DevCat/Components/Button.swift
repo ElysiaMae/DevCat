@@ -34,6 +34,27 @@ struct CopyButton: View {
     }
 }
 
+struct CopyIconButton: View {
+    var text: String
+    @State private var isAnimating = 0
+
+    var body: some View {
+        Button(
+            action: {
+                isAnimating += 1
+                setClipboard(text)
+            },
+            label: {
+                Image(systemName: "doc.on.doc")
+            }
+        )
+        .symbolEffect(.bounce.up.byLayer, value: isAnimating)
+        .onTapGesture {
+            isAnimating += 1
+        }
+    }
+}
+
 // MARK: Paste Button
 
 struct PasteButton: View {
@@ -57,9 +78,30 @@ struct PasteButton: View {
     }
 }
 
+struct PasteIconButton: View {
+    @Binding var text: String
+    @State private var isAnimating = 0
+
+    var body: some View {
+        Button(
+            action: {
+                isAnimating += 1
+                text = getClipboard()
+            },
+            label: {
+                Image(systemName: "doc.on.clipboard")
+            }
+        )
+        .symbolEffect(.bounce.up.byLayer, value: isAnimating)
+        .onTapGesture {
+            isAnimating += 1
+        }
+    }
+}
+
 // MARK: Trash Button
 
-struct TrashButton: View {
+struct TrashIconButton: View {
     @Binding var text: String
     @State private var isAnimating = 0
 
@@ -80,6 +122,18 @@ struct TrashButton: View {
     }
 }
 
-#Preview {
+#Preview("CopyButton") {
     CopyButton(text: "Sample text")
 }
+
+#Preview("CopyIconButton") {
+    CopyIconButton(text: "Sample text")
+}
+
+//#Preview("PasteButton") {
+//    PasteButton(text: "Sample text")
+//}
+//
+//#Preview("PasteIconButton") {
+//    PasteIconButton(text: "Sample text")
+//}

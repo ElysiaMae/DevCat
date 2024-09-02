@@ -8,11 +8,15 @@
 import Foundation
 import SwiftUI
 
+// MARK: - Product
+
 struct Product: Identifiable {
     let id = UUID()
     let name: String
     let detailView: AnyView
 }
+
+// MARK: - CategoryType
 
 enum CategoryType: String, CaseIterable, Identifiable {
     case encoding
@@ -29,29 +33,29 @@ enum CategoryType: String, CaseIterable, Identifiable {
 
     var localizedName: LocalizedStringKey {
         switch self {
-        case .encoding: return "Encoding"
-        case .generate: return "Generate"
-        case .math: return "Math"
-        case .crypto: return "Crypto"
-        case .classicalCipher: return "ClassicalCipher"
-        case .text: return "Text"
-        case .image: return "Image"
-        case .finance: return "Finance"
-        case .other: return "Other"
+        case .encoding: "Encoding"
+        case .generate: "Generate"
+        case .math: "Math"
+        case .crypto: "Crypto"
+        case .classicalCipher: "ClassicalCipher"
+        case .text: "Text"
+        case .image: "Image"
+        case .finance: "Finance"
+        case .other: "Other"
         }
     }
 
     var icon: String {
         switch self {
-        case .encoding: return "function"
-        case .generate: return "wand.and.stars"
-        case .math: return "x.squareroot"
-        case .crypto: return "key"
-        case .classicalCipher: return "key.fill"
-        case .text: return "textformat"
-        case .image: return "photo"
-        case .finance: return "dollarsign.circle"
-        case .other: return "ellipsis"
+        case .encoding: "function"
+        case .generate: "wand.and.stars"
+        case .math: "x.squareroot"
+        case .crypto: "key"
+        case .classicalCipher: "key.fill"
+        case .text: "textformat"
+        case .image: "photo"
+        case .finance: "dollarsign.circle"
+        case .other: "ellipsis"
         }
     }
 
@@ -90,7 +94,9 @@ enum CategoryType: String, CaseIterable, Identifiable {
             ]
         case .text:
             [
-                Product(name: "RegexTester", detailView: AnyView(RegexTesterView()))
+                Product(name: "RegexTester", detailView: AnyView(RegexTesterView())),
+                Product(name: "ZeroWidth", detailView: AnyView(ZeroWidthView())),
+                Product(name: "CheckText", detailView: AnyView(CheckTextView()))
             ]
         case .image:
             [
